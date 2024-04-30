@@ -5,13 +5,54 @@
 
     <body>
         <canvas id="webgl" width="400" height="400"></canvas>
-        
+        <p id="fps">ms: 0 fps: 0</p>
+        <p>
+        Camera Angle <input type = "range" min = "0" max = "360" value = "0" class = "slider" id = "angleSlider">
+        </p>
+        <p>
+            arm_1 <input type = "range" min = "274" max = "360" value = "274" class = "slider" id = "tail_1">
+            <span id="tail_1_value" class="slider-value">0</span>
+        </p>
+        <p>
+            lower_arm_2 <input type = "range" min = "226" max = "360" value = "226" class = "slider" id = "tail_2"> 
+            <span id="tail_2_value" class="slider-value">0</span>
+        </p>
+        <p>
+            hand_2 <input type = "range" min = "132" max = "231" value = "0" class = "slider" id = "tail_3"> 
+            <span id="tail_3_value" class="slider-value">0</span>
+        </p>
+        <label class="switch"> Animation
+            <input  id = "anim" type="checkbox">
+            <span class="slider round"></span>
+        </label>    
+        <script>
+            function updateSliderValue(sliderId, valueId) {
+                var slider = document.getElementById(sliderId);
+                var output = document.getElementById(valueId);
+                output.textContent = slider.value;
+                
+                slider.oninput = function() {
+                    output.textContent = this.value;
+                }
+            }
+    
+            updateSliderValue('tail_1', 'tail_1_value');
+            updateSliderValue('tail_2', 'tail_2_value');
+            updateSliderValue('tail_3', 'tail_3_value');
+        function sendTextToHTML(text, elementId) {
+            var element = document.getElementById(elementId);
+            element.textContent = text;
+        }
+
+        </script>
         <script src="lib/cuon-matrix.js"></script>
         <script src="lib/webgl-utils.js"></script>
         <script src="lib/cuon-utils.js"></script>
         <script src="lib/webgl-debug.js"></script>
         <script src = "./Triangle.js"></script>
         <script src = "./Cube.js"></script>
+        <script src = "./Cylinder.js"></script>
+        <script src = "./Dodecahedron.js"></script>
         <script src = "./main.js"></script>
     </body>
 </html>
